@@ -9,17 +9,17 @@ export default () => {
       menus: [
         {
           id: nanoid(),
-          title: "MG1 - MenuItem - 1",
+          title: "Module-A",
           moduleId: "Module-A",
         },
         {
           id: nanoid(),
-          title: "MG1 - MenuItem - 2",
+          title: "Module-B",
           moduleId: "Module-B",
         },
         {
           id: nanoid(),
-          title: "MG1 - MenuItem - 3",
+          title: "Module-C",
           moduleId: "Module-C",
         },
       ],
@@ -30,17 +30,17 @@ export default () => {
       menus: [
         {
           id: nanoid(),
-          title: "MG2 - MenuItem - 1",
+          title: "Module-D",
           moduleId: "Module-D",
         },
         {
           id: nanoid(),
-          title: "MG2 - MenuItem - 2",
+          title: "Module-E",
           moduleId: "Module-E",
         },
         {
           id: nanoid(),
-          title: "MG2 - MenuItem - 3",
+          title: "Module-F",
           moduleId: "Module-F",
         },
       ],
@@ -51,17 +51,17 @@ export default () => {
       menus: [
         {
           id: nanoid(),
-          title: "MG3 - MenuItem - 1",
+          title: "Module-G",
           moduleId: "Module-G",
         },
         {
           id: nanoid(),
-          title: "MG3 - MenuItem - 2",
+          title: "Module-H",
           moduleId: "Module-H",
         },
         {
           id: nanoid(),
-          title: "MG3 - MenuItem - 3",
+          title: "Module-I",
           moduleId: "Module-I",
         },
       ],
@@ -72,18 +72,39 @@ export default () => {
       menus: [
         {
           id: nanoid(),
-          title: "MG4 - MenuItem - 1",
+          title: "Module-J",
           moduleId: "Module-J",
         },
         {
           id: nanoid(),
-          title: "MG4 - MenuItem - 2",
+          title: "Module-K",
           moduleId: "Module-K",
         },
         {
           id: nanoid(),
-          title: "MG4 - MenuItem - 3",
+          title: "Module-L",
           moduleId: "Module-L",
+        },
+      ],
+    },
+    {
+      id: nanoid(),
+      title: "MenuGroup - 5",
+      menus: [
+        {
+          id: nanoid(),
+          title: "Module-M",
+          moduleId: "Module-M",
+        },
+        {
+          id: nanoid(),
+          title: "Module-N",
+          moduleId: "Module-N",
+        },
+        {
+          id: nanoid(),
+          title: "Module-O",
+          moduleId: "Module-O",
         },
       ],
     },

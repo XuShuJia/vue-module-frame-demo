@@ -17,6 +17,6 @@ export default () => {
         token: `tk${nanoid()}`,
       };
       resolve(LoginResData);
-    }, 2000);
+    }, 0);
   });
 };

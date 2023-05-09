@@ -1,6 +1,7 @@
 import axios, { type AxiosRequestConfig } from "axios";
 
 const baseURL = "/";
+let authorization: string = "";
 
 export default <D, R>(
   url: string,
@@ -12,9 +13,13 @@ export default <D, R>(
     data,
     baseURL,
     headers: {
-      Authorization: "",
+      Authorization: authorization,
       "Content-Type": "application/json",
     },
     ...config,
   });
+};
+
+export const setAuthorization = (tk: string) => {
+  authorization = tk;
 };

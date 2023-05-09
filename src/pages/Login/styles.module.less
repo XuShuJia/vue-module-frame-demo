@@ -1,10 +1,22 @@
 :root {
+  .container {
+    --background: #e8eaed;
+  }
   .login-form {
     --background: #ffffff;
   }
   :root[data-theme="dark"] {
-    --background: #333333;
+    .login-form {
+      --background: #333333;
+    }
+    .container {
+      --background: #000000;
+    }
   }
+}
+
+.container {
+  background: var(--background);
 }
 
 .header {

@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import { setAuthorization } from "@/util/request";
 import type { NSUser } from "./types";
 
 export const useUserStore = defineStore("user", () => {
@@ -14,7 +15,10 @@ export const useUserStore = defineStore("user", () => {
 
   const setToken = (tk: string) => {
     token.value = tk;
+    setAuthorization(tk);
+    sessionStorage.setItem("token", tk);
   };
+
   const setUserInfo = (userInfo: NSUser.IUserInfo) => {
     info.value = userInfo;
   };

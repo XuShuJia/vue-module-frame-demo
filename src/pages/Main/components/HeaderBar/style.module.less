@@ -1,0 +1,98 @@
+:root {
+}
+.header-bar {
+  box-sizing: border-box;
+  @size: 50px;
+  height: @size;
+  padding: 0 15px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left,
+.header-right {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.header-left {
+  justify-content: flex-start;
+}
+.sidebar-menu-switch-icon {
+  @size: 36px;
+  width: @size;
+  height: @size;
+  margin-right: 15px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: @size;
+  cursor: pointer;
+  &:hover {
+    background: var(--buttonHoverBackground);
+  }
+  &:active {
+    background: var(--buttonActiveBackground);
+  }
+}
+.app-title {
+  font-size: 14px;
+}
+
+.header-right {
+  justify-content: flex-end;
+}
+.theme-mode-switch {
+  @size: 30px;
+  width: @size;
+  height: @size;
+  border-radius: @size;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    background: var(--buttonHoverBackground);
+  }
+  &:active {
+    background: var(--buttonActiveBackground);
+  }
+}
+.user {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-self: flex-start;
+  align-items: center;
+  margin-left: 20px;
+  border-radius: 0 24px 24px 0;
+  height: 24px;
+  padding: 0 10px 0 0;
+  cursor: pointer;
+  &:hover {
+    background: var(--buttonHoverBackground);
+  }
+  &:active {
+    background: var(--buttonActiveBackground);
+  }
+}
+.user-avatar {
+  @size: 30px;
+  width: @size;
+  height: @size;
+  margin: 0 0 0 -5px;
+  & > img {
+    width: @size;
+    height: @size;
+    border-radius: @size;
+    object-fit: cover;
+  }
+}
+.user-name {
+  margin-left: 10px;
+  font-size: 14px;
+}

@@ -13,6 +13,7 @@ import {
 //   type IUserLoginApiRqeData,
 //   type IUserLoginApiResData,
 // } from "./api/UserLoginApi";
+import ContainerBox from "@/components/ContainerBox";
 import { createLoginResData } from "@/mock";
 import { useUserStore } from "@/store";
 import styles from "./styles.module.less";
@@ -70,30 +71,32 @@ const handleLogin = async () => {
 </script>
 
 <template>
-  <div :class="styles.header">
-    <h1 :class="styles.title">Module Frame Demo</h1>
-  </div>
-  <div :class="styles['login-form']">
-    <div :class="styles.welcome">
-      <div>Welcome</div>
-      <div>Login</div>
+  <ContainerBox :class="styles.container">
+    <div :class="styles.header">
+      <h1 :class="styles.title">Module Frame Demo</h1>
     </div>
-    <ElForm labelPosition="top" v-model="state.login">
-      <ElFormItem label="账号">
-        <ElInput v-model="state.login.account" />
-      </ElFormItem>
-      <ElFormItem label="密码">
-        <ElInput type="password" v-model="state.login.password" />
-      </ElFormItem>
-      <div :class="styles['login-button']">
-        <ElButton
-          type="primary"
-          :loading="state.loading"
-          @click="handleLogin"
-        >
-          登 录
-        </ElButton>
+    <div :class="styles['login-form']">
+      <div :class="styles.welcome">
+        <div>Welcome</div>
+        <div>Login</div>
       </div>
-    </ElForm>
-  </div>
+      <ElForm labelPosition="top" v-model="state.login">
+        <ElFormItem label="账号">
+          <ElInput v-model="state.login.account" />
+        </ElFormItem>
+        <ElFormItem label="密码">
+          <ElInput type="password" v-model="state.login.password" />
+        </ElFormItem>
+        <div :class="styles['login-button']">
+          <ElButton
+            type="primary"
+            :loading="state.loading"
+            @click="handleLogin"
+          >
+            登 录
+          </ElButton>
+        </div>
+      </ElForm>
+    </div>
+  </ContainerBox>
 </template>
