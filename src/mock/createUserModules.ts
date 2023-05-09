@@ -1,55 +1,66 @@
-import { nanoid } from "nanoid";
 import type { NSModule } from "@/types";
 
 export default () => {
   const UserModules: NSModule.TModuleList = [
     {
-      id: nanoid(),
+      id: "Module-A",
       name: "Module-A",
     },
     {
-      id: nanoid(),
+      id: "Module-B",
       name: "Module-B",
     },
     {
-      id: nanoid(),
+      id: "Module-C",
       name: "Module-C",
     },
     {
-      id: nanoid(),
+      id: "Module-D",
       name: "Module-D",
     },
     {
-      id: nanoid(),
+      id: "Module-E",
       name: "Module-E",
     },
     {
-      id: nanoid(),
+      id: "Module-F",
       name: "Module-F",
     },
     {
-      id: nanoid(),
+      id: "Module-G",
       name: "Module-G",
     },
     {
-      id: nanoid(),
+      id: "Module-H",
       name: "Module-H",
     },
     {
-      id: nanoid(),
+      id: "Module-I",
       name: "Module-I",
     },
     {
-      id: nanoid(),
+      id: "Module-J",
       name: "Module-J",
     },
     {
-      id: nanoid(),
+      id: "Module-K",
       name: "Module-K",
     },
     {
-      id: nanoid(),
+      id: "Module-L",
       name: "Module-L",
+    },
+    {
+      id: "Module-M",
+      name: "Module-M",
+    },
+    {
+      id: "Module-N",
+      name: "Module-N",
+    },
+    {
+      id: "Module-O",
+      name: "Module-O",
     },
   ];
   return UserModules;
