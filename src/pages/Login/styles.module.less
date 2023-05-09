@@ -1,0 +1,46 @@
+:root {
+  .login-form {
+    --background: #ffffff;
+  }
+  :root[data-theme="dark"] {
+    --background: #333333;
+  }
+}
+
+.header {
+  height: 45px;
+  padding: 0 15px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.title {
+  font-size: 20px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.login-form {
+  box-sizing: border-box;
+  position: absolute;
+  top: calc(50% - 250px);
+  right: 10vw;
+  width: 350px;
+  height: 500px;
+  padding: 30px;
+  background: var(--background);
+  border-radius: 15px;
+}
+
+.welcome {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 20px 0 30px;
+}
+
+.login-button {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+}
