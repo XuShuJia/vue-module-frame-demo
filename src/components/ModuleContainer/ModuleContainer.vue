@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, reactive, watchEffect } from "vue";
+import { onBeforeMount, onMounted, reactive, watchEffect } from "vue";
 import { useMenuModuleStore } from "@/store";
 import { ModuleContainerProps } from "./types";
 import styles from "./style.module.less";
@@ -27,14 +27,18 @@ watchEffect(() => {
   }
 });
 
-onMounted(() => {
+onBeforeMount(() => {
   if (props.module) {
+    props.onInit && props.onInit(props.module);
     menuModuleStore.setModuleContainerMap(
-      props.module.id,
+      props.module,
       props.onData,
       props.onBeforeClose
     );
   }
+});
+
+onMounted(() => {
   state.mounted = true;
   props.onMounted && props.onMounted();
 });

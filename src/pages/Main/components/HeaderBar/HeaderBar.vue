@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ElPopover, ElButton, ElMessageBox } from "element-plus";
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 import {
   MdDensitymediumRound,
@@ -9,8 +10,6 @@ import ContainerBox from "@/components/ContainerBox";
 import { useThemeModeStore } from "@/store";
 import styles from "./style.module.less";
 
-const theme = useThemeModeStore();
-
 defineEmits<{
   (e: "toggleSideMenuBar"): void;
 }>();
@@ -20,6 +19,20 @@ addIcons(
   MdLightmodeOutlined,
   MdNightlightOutlined
 );
+
+const theme = useThemeModeStore();
+const handleExit = () => {
+  ElMessageBox({
+    title: "确认操作",
+    message: "确定要退出？",
+    showCancelButton: true,
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+  }).then(() => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  });
+};
 </script>
 
 <template>
@@ -52,12 +65,19 @@ addIcons(
           "
         />
       </div>
-      <div :class="styles.user">
-        <div :class="styles['user-avatar']">
-          <img src="@/assets/default-avatar.jpg" />
-        </div>
-        <div :class="styles['user-name']">DD</div>
-      </div>
+      <ElPopover placement="bottom" width="200" trigger="click">
+        <template #reference>
+          <div :class="styles.user">
+            <div :class="styles['user-avatar']">
+              <img src="@/assets/default-avatar.jpg" />
+            </div>
+            <div :class="styles['user-name']">DD</div>
+          </div>
+        </template>
+        <ElButton :style="{ width: '100%' }" @click="handleExit"
+          >退 出</ElButton
+        >
+      </ElPopover>
     </div>
   </ContainerBox>
 </template>

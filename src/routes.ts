@@ -20,7 +20,7 @@ const routes: RouteRecordRaw[] = [
     component: Main,
     beforeEnter() {
       const userStore = useUserStore();
-      if (!userStore.token && !sessionStorage.getItem("token")) {
+      if (!userStore.token && !localStorage.getItem("token")) {
         return { name: "login", replace: true };
       }
     },

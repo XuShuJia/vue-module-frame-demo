@@ -11,7 +11,7 @@ import { createLoginResData } from "@/mock";
 
 export default (userStore: ReturnType<typeof useUserStore>) => {
   onBeforeMount(async () => {
-    if (!userStore.token && sessionStorage.getItem("token")) {
+    if (!userStore.token && localStorage.getItem("token")) {
       const loading = ElLoading.service({
         text: "Loading",
       });

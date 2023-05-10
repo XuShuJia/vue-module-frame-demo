@@ -54,7 +54,7 @@ export const useUserStore = defineStore("User", () => {
   const setToken = (tk: string) => {
     token.value = tk;
     setAuthorization(tk);
-    sessionStorage.setItem("token", tk);
+    localStorage.setItem("token", tk);
   };
   const setUserInfo = (userInfo: NSUser.IUserInfo) => {
     info.value = userInfo;
@@ -74,6 +74,9 @@ interface IModalContainerMap {
     beforeClose?: () => Promise<boolean | undefined>;
   };
 }
+interface IModuleDataTaskMap {
+  [id: string]: () => any;
+}
 export const useMenuModuleStore = defineStore("MenuModule", () => {
   const userStore = useUserStore();
   const menuActive = ref<NSMenu.IMenuItem | null>(null);
@@ -81,6 +84,7 @@ export const useMenuModuleStore = defineStore("MenuModule", () => {
   const moduleTabActive = ref<NSModule.IModuleItem | null>(null); // 载入并显示的模块对应的标签（只有一个
   const moduleRenderedList = ref<NSModule.TModuleList>([]); // 已载入的模块列表
   const moduleContainerMap = ref<IModalContainerMap>({}); // 已载入的模块的集合，其中注册了每个模块的一些方法
+  const moduleDataTaskMap = ref<IModuleDataTaskMap>({}); // 模块数据任务
 
   // 在点击MenuSideBar中的菜单时调用
   function setMenuActive(menu: NSMenu.IMenuItem) {
@@ -157,6 +161,9 @@ export const useMenuModuleStore = defineStore("MenuModule", () => {
       moduleRenderedList.value = moduleRenderedList.value.filter(
         ({ id }) => id !== module.id
       );
+      if (moduleContainerMap.value[module.id]) {
+        delete moduleContainerMap.value[module.id];
+      }
       if (moduleTabList.value.length === 0) {
         menuActive.value = null;
         return;
@@ -174,14 +181,57 @@ export const useMenuModuleStore = defineStore("MenuModule", () => {
   }
   // 模块载入时会调用该方法注册到moduleContainerMap中
   function setModuleContainerMap(
-    moduleId: string,
-    dataCallback?: () => void,
+    module: NSModule.IModuleItem,
+    dataCallback?: (data?: any) => void,
     beforeCloseCallback?: () => Promise<boolean | undefined>
   ) {
-    moduleContainerMap.value[moduleId] = {
+    moduleContainerMap.value[module.id] = {
       data: dataCallback,
       beforeClose: beforeCloseCallback,
     };
+    if (moduleDataTaskMap.value[module.id] && dataCallback) {
+      dataCallback(moduleDataTaskMap.value[module.id]());
+      delete moduleDataTaskMap.value[module.id];
+    }
+  }
+  // 到某个模块
+  function goToModule(
+    fromModule: NSModule.IModuleItem,
+    toModule: NSModule.IModuleItem,
+    data?: any
+  ) {
+    if (userStore.info.modules.find(({ id }) => id === toModule.id)) {
+      userStore.info.menus.forEach((group) => {
+        group.menus.forEach((menu) => {
+          if (menu.moduleId === toModule.id) {
+            menuActive.value = menu;
+          }
+        });
+      });
+      if (
+        !moduleRenderedList.value.find(({ id }) => id === toModule.id)
+      ) {
+        moduleRenderedList.value.push(toModule);
+      }
+      if (!moduleTabList.value.find(({ id }) => id === toModule.id)) {
+        moduleTabList.value.push(toModule);
+      }
+      if (data) {
+        if (
+          moduleContainerMap.value[toModule.id] &&
+          moduleContainerMap.value[toModule.id].data
+        ) {
+          (
+            moduleContainerMap.value[toModule.id].data as (
+              d?: any
+            ) => void
+          )(data);
+        } else {
+          moduleDataTaskMap.value[toModule.id] = () => data;
+        }
+      }
+      moduleTabActive.value = toModule;
+    }
   }
 
   return {
@@ -194,5 +244,6 @@ export const useMenuModuleStore = defineStore("MenuModule", () => {
     setModuleTabActive,
     setModuleContainerMap,
     closeModule,
+    goToModule,
   };
 });
