@@ -62,7 +62,12 @@ watchEffect(() => {
             Math.abs(tabBarListPrevTx)
           ) {
             tabBarListNextTx = -tabBarItemLeft;
-          } else if (tabBarItemLeft > tabBarWidth) {
+          } else if (
+            tabBarItemLeft +
+              tabBarItemWidth -
+              Math.abs(tabBarListPrevTx) >
+            tabBarWidth
+          ) {
             tabBarListNextTx =
               tabBarWidth - (tabBarItemLeft + tabBarItemWidth);
           }
