@@ -10,7 +10,7 @@ export const useThemeModeStore = defineStore("Theme", () => {
       if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
         theme = "dark";
       }
-      document.documentElement.setAttribute("theme", theme);
+      document.documentElement.className = theme;
       document.documentElement.dataset.theme = theme;
       return theme;
     })()
@@ -18,18 +18,18 @@ export const useThemeModeStore = defineStore("Theme", () => {
 
   const switchThemeMode = () => {
     const theme = mode.value === "dark" ? "light" : "dark";
-    document.documentElement.setAttribute("theme", theme);
+    document.documentElement.className = theme;
     document.documentElement.dataset.theme = theme;
     mode.value = theme;
   };
   const setLightTheme = () => {
     mode.value = "light";
-    document.documentElement.setAttribute("theme", "light");
+    document.documentElement.className = "light";
     document.documentElement.dataset.theme = "light";
   };
   const setDarkTheme = () => {
     mode.value = "dark";
-    document.documentElement.setAttribute("theme", "dark");
+    document.documentElement.className = "dark";
     document.documentElement.dataset.theme = "dark";
   };
 
@@ -68,12 +68,19 @@ export const useUserStore = defineStore("User", () => {
   };
 });
 
+interface IModalContainerMap {
+  [id: string]: {
+    data?: (data?: any) => void;
+    beforeClose?: () => Promise<boolean | undefined>;
+  };
+}
 export const useMenuModuleStore = defineStore("MenuModule", () => {
   const userStore = useUserStore();
   const menuActive = ref<NSMenu.IMenuItem | null>(null);
   const moduleTabList = ref<NSModule.TModuleList>([]); // 存放模块的标签，但标签对应的模块可以没有载入。
   const moduleTabActive = ref<NSModule.IModuleItem | null>(null); // 载入并显示的模块对应的标签（只有一个
   const moduleRenderedList = ref<NSModule.TModuleList>([]); // 已载入的模块列表
+  const moduleContainerMap = ref<IModalContainerMap>({}); // 已载入的模块的集合，其中注册了每个模块的一些方法
 
   // 在点击MenuSideBar中的菜单时调用
   function setMenuActive(menu: NSMenu.IMenuItem) {
@@ -114,7 +121,21 @@ export const useMenuModuleStore = defineStore("MenuModule", () => {
     }
   }
   // 点击ModuleTab中的标签的关闭按钮时调用
-  function closeModule(module: NSModule.IModuleItem) {
+  async function closeModule(module: NSModule.IModuleItem) {
+    if (
+      moduleContainerMap.value[module.id] &&
+      moduleContainerMap.value[module.id].beforeClose
+    ) {
+      const canClose = await (
+        moduleContainerMap.value[module.id]
+          .beforeClose as unknown as () => Promise<
+          boolean | undefined
+        >
+      )();
+      if (canClose === false) {
+        return;
+      }
+    }
     if (userStore.info.modules.find(({ id }) => id === module.id)) {
       let nextRenderedModuleId = "";
       if (module.id === moduleTabActive.value?.id) {
@@ -151,14 +172,27 @@ export const useMenuModuleStore = defineStore("MenuModule", () => {
       }
     }
   }
+  // 模块载入时会调用该方法注册到moduleContainerMap中
+  function setModuleContainerMap(
+    moduleId: string,
+    dataCallback?: () => void,
+    beforeCloseCallback?: () => Promise<boolean | undefined>
+  ) {
+    moduleContainerMap.value[moduleId] = {
+      data: dataCallback,
+      beforeClose: beforeCloseCallback,
+    };
+  }
 
   return {
     menuActive,
     moduleTabList,
     moduleTabActive,
     moduleRenderedList,
+    moduleContainerMap,
     setMenuActive,
     setModuleTabActive,
+    setModuleContainerMap,
     closeModule,
   };
 });

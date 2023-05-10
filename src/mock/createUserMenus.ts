@@ -9,18 +9,18 @@ export default () => {
       menus: [
         {
           id: nanoid(),
-          title: "Module-A",
-          moduleId: "Module-A",
+          title: "首页",
+          moduleId: "ModuleA",
         },
         {
           id: nanoid(),
-          title: "Module-B",
-          moduleId: "Module-B",
+          title: "模块功能",
+          moduleId: "ModuleB",
         },
         {
           id: nanoid(),
           title: "Module-C",
-          moduleId: "Module-C",
+          moduleId: "ModuleC",
         },
       ],
     },
@@ -31,17 +31,17 @@ export default () => {
         {
           id: nanoid(),
           title: "Module-D",
-          moduleId: "Module-D",
+          moduleId: "ModuleD",
         },
         {
           id: nanoid(),
           title: "Module-E",
-          moduleId: "Module-E",
+          moduleId: "ModuleE",
         },
         {
           id: nanoid(),
           title: "Module-F",
-          moduleId: "Module-F",
+          moduleId: "ModuleF",
         },
       ],
     },
@@ -52,17 +52,17 @@ export default () => {
         {
           id: nanoid(),
           title: "Module-G",
-          moduleId: "Module-G",
+          moduleId: "ModuleG",
         },
         {
           id: nanoid(),
           title: "Module-H",
-          moduleId: "Module-H",
+          moduleId: "ModuleH",
         },
         {
           id: nanoid(),
           title: "Module-I",
-          moduleId: "Module-I",
+          moduleId: "ModuleI",
         },
       ],
     },
@@ -73,17 +73,17 @@ export default () => {
         {
           id: nanoid(),
           title: "Module-J",
-          moduleId: "Module-J",
+          moduleId: "ModuleJ",
         },
         {
           id: nanoid(),
           title: "Module-K",
-          moduleId: "Module-K",
+          moduleId: "ModuleK",
         },
         {
           id: nanoid(),
           title: "Module-L",
-          moduleId: "Module-L",
+          moduleId: "ModuleL",
         },
       ],
     },
@@ -94,17 +94,17 @@ export default () => {
         {
           id: nanoid(),
           title: "Module-M",
-          moduleId: "Module-M",
+          moduleId: "ModuleM",
         },
         {
           id: nanoid(),
           title: "Module-N",
-          moduleId: "Module-N",
+          moduleId: "ModuleN",
         },
         {
           id: nanoid(),
           title: "Module-O",
-          moduleId: "Module-O",
+          moduleId: "ModuleO",
         },
       ],
     },

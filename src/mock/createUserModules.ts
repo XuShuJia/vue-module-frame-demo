@@ -3,63 +3,63 @@ import type { NSModule } from "@/types";
 export default () => {
   const UserModules: NSModule.TModuleList = [
     {
-      id: "Module-A",
-      name: "Module-A",
+      id: "ModuleA",
+      name: "首页",
     },
     {
-      id: "Module-B",
-      name: "Module-B",
+      id: "ModuleB",
+      name: "模块功能",
     },
     {
-      id: "Module-C",
+      id: "ModuleC",
       name: "Module-C",
     },
     {
-      id: "Module-D",
+      id: "ModuleD",
       name: "Module-D",
     },
     {
-      id: "Module-E",
+      id: "ModuleE",
       name: "Module-E",
     },
     {
-      id: "Module-F",
+      id: "ModuleF",
       name: "Module-F",
     },
     {
-      id: "Module-G",
+      id: "ModuleG",
       name: "Module-G",
     },
     {
-      id: "Module-H",
+      id: "ModuleH",
       name: "Module-H",
     },
     {
-      id: "Module-I",
+      id: "ModuleI",
       name: "Module-I",
     },
     {
-      id: "Module-J",
+      id: "ModuleJ",
       name: "Module-J",
     },
     {
-      id: "Module-K",
+      id: "ModuleK",
       name: "Module-K",
     },
     {
-      id: "Module-L",
+      id: "ModuleL",
       name: "Module-L",
     },
     {
-      id: "Module-M",
+      id: "ModuleM",
       name: "Module-M",
     },
     {
-      id: "Module-N",
+      id: "ModuleN",
       name: "Module-N",
     },
     {
-      id: "Module-O",
+      id: "ModuleO",
       name: "Module-O",
     },
   ];
